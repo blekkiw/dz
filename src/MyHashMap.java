@@ -4,7 +4,8 @@ public class MyHashMap <KEY, VALUE> {
 
     private MyHashEntry <KEY, VALUE> [] myHashEntries;
 
-    Class <KEY> keyClass;
+    Class keyClass;
+    Class valueClass;
 
     public MyHashMap() {
         myHashEntries=new MyHashEntry [100];
@@ -12,7 +13,36 @@ public class MyHashMap <KEY, VALUE> {
 
     public void remove (Object object) {
         if (object.getClass()==keyClass) {
+removeKey((KEY) object);
+        }
+        if (object.getClass()==valueClass) {
+            removeValue ((VALUE) object);
+        }
+    }
 
+    private void removeKey(KEY object) {
+
+        for (int i = 0; i < myHashEntries.length; i++) {
+            if (myHashEntries[i]==null) {
+                continue;
+            }
+            if (myHashEntries[i].getKey().equals(object)) {
+                myHashEntries[i]=null;
+                break;
+            }
+        }
+    }
+
+
+    private void removeValue(VALUE object) {
+        for (int i = 0; i < myHashEntries.length; i++) {
+            if (myHashEntries[i]==null) {
+                continue;
+            }
+            if (myHashEntries[i].getValue().equals(object)) {
+                myHashEntries[i]=null;
+                break;
+            }
         }
     }
 
@@ -32,6 +62,8 @@ public class MyHashMap <KEY, VALUE> {
 
     public void put (KEY key, VALUE value) {
         MyHashEntry <KEY, VALUE> myHashEntry = new MyHashEntry<>(key,value);
+        keyClass=key.getClass();
+        valueClass=value.getClass();
         for (int i = 0; i < myHashEntries.length; i++) {
             if (myHashEntries[i]==null) {
                 myHashEntries[i]=myHashEntry;

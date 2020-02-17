@@ -1,5 +1,3 @@
-import java.util.HashMap;
-import java.util.HashSet;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,6 +9,9 @@ public class Main {
         }
 
         myHashMap.put("Privet1", 100);
+        myHashMap.remove(5);
+        myHashMap.remove(2);
+        myHashMap.remove(10);
 
         System.out.println(myHashMap.toString());
 
